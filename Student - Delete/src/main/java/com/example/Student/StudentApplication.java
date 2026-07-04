@@ -10,51 +10,47 @@ import java.util.Optional;
 
 @SpringBootApplication
 public class StudentApplication implements CommandLineRunner {
-@Autowired
-private StudRepository repository;
+	@Autowired
+	private StudRepository repository;
 
 	public static void main(String[] args) {
 
-	SpringApplication.run(StudentApplication.class, args);
+		SpringApplication.run(StudentApplication.class, args);
 	}
-@Override
-	public void run(String...args)throws Exception {
 
-	Student s1 = new Student();
-	s1.setName("PINTU");
-	s1.setBranch("bcom");
-	s1.setPer(1090);
+	@Override
+	public void run(String... args) throws Exception {
 
-	Student s2 = new Student();
+		Student s1 = new Student();
+		s1.setName("PINTU");
+		s1.setBranch("bcom");
+		s1.setPer(1090);
 
-	s2.setName("raju");
-	s2.setBranch("bsc");
-	s2.setPer(1000);
+		Student s2 = new Student();
 
-	System.out.println("student saving");
-	repository.save(s1);
-	repository.save(s2);
-	System.out.println("student saved successfully");
+		s2.setName("raju");
+		s2.setBranch("bsc");
+		s2.setPer(1000);
 
-	System.out.println("Updating student");
+		System.out.println("student saving");
+		repository.save(s1);
+		repository.save(s2);
+		System.out.println("student saved successfully");
 
-	Optional<Student>  temp=repository.findById(s1.getRoll());
+		List<Student> students = repository.findAll();
+		for (Student student : students) {
+			System.out.println(student);
+		}
+		repository.deleteById(13);
+		repository.deleteById(26);
 
-	if(temp.isPresent()){
-		Student student= temp.get();
-		student.setName("Pikachu");
-		student.setPer(950);
-		student.setBranch("BCA");
-
-		repository.save(student);
-
-		System.out.println("student updated successfully");
+		System.out.println(" Deleting student");
+		Optional<Student> temp = repository.findById(s1.getRoll());
+		if (temp.isPresent()) {
+			repository.deleteById(s1.getRoll());
+			System.out.println("student deleted successfully");
+		} else {
+			System.out.println("student not found");
+		}
 	}
-	else{
-		System.out.println("student not found");
-	}
-	System.out.println("found student"+temp);
-
-
-}
 }
