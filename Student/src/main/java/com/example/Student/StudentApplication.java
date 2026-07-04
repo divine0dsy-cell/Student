@@ -37,5 +37,9 @@ public StudentApplication(StudRepository repository){
 
 	Student s5= new Student(35,"Suresh",70,"Production");
 	repository.save(s5);
+
+	Student s6= new Student(30,"Divine",99,"IT");
+	repository.save(s6);
+
 }
 }
