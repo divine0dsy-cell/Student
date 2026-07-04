@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StudentApplication implements CommandLineRunner {
 @Autowired
 private StudRepository repository;
+
 public StudentApplication(StudRepository repository){
 	this.repository = repository;
 }
