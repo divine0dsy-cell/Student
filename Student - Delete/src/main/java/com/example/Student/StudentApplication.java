@@ -14,7 +14,6 @@ public class StudentApplication implements CommandLineRunner {
 	private StudRepository repository;
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(StudentApplication.class, args);
 	}
 
